@@ -11,6 +11,7 @@ const filterValues = ['Noise', 'boAt', 'Pebble'];
 test.describe('Product Search with Filters', () => {
   for (const filterValue of filterValues) {
     test(`should search and filter products with filter: ${filterValue}`, async ({ page }) => {
+      test.setTimeout(60000);
       const homePage = new HomePage(page);
       const searchResultsPage = new SearchResultsPage(page);
       const productViewPage = new ProductViewPage(page);

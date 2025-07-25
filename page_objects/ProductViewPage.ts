@@ -13,6 +13,6 @@ export class ProductViewPage {
   }
 
   async addToCart() {
-    await this.page.locator('#addToCart #add-to-cart-button').nth(1).click();
+    await this.page.getByRole('button', { name: 'Add to Cart', exact: true }).click();
   }
 } 
