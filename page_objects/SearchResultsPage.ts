@@ -8,6 +8,7 @@ export class SearchResultsPage {
   }
 
   async applyFilter(filterName: string) {
+    await this.page.locator('a[aria-label="See more, Brands"]').click();
     await this.page.getByRole('link', { name: `Apply the filter ${filterName} to narrow results` }).click();
   }
 
