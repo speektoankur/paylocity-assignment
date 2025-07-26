@@ -8,7 +8,7 @@ export class HomePage {
   }
 
   async goto() {
-    await this.page.goto('https://www.amazon.in/');
+    await this.page.goto('https://www.amazon.in/', {waitUntil: 'domcontentloaded'});
   }
 
   async searchForProduct(product: string) {
