@@ -9,6 +9,10 @@ export class HomePage {
 
   async goto() {
     await this.page.goto('https://www.amazon.in/', {waitUntil: 'domcontentloaded'});
+    if (await this.page.getByText('Continue shopping').isVisible()){
+      console.log('Continue Button appeared before Navigation to Home Page');
+      this.page.getByText('Continue shopping').click();
+    }
   }
 
   async searchForProduct(product: string) {
