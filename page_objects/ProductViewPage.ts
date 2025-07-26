@@ -13,6 +13,6 @@ export class ProductViewPage {
   }
 
   async addToCart() {
-    await this.page.getByRole('button', { name: 'Add to Cart', exact: true }).click();
+    await this.page.locator('#desktop_qualifiedBuyBox').getByRole('button', { name: 'Add to Cart' }).click();
   }
 } 
