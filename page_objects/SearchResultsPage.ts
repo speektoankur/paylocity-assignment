@@ -1,4 +1,5 @@
 import { Page } from '@playwright/test';
+import { clickWithRetry, waitForElementWithRetry, waitForPageStability } from '../utils/common_actions';
 
 export class SearchResultsPage {
   readonly page: Page;
@@ -8,16 +9,25 @@ export class SearchResultsPage {
   }
 
   async applyFilter(filterName: string) {
-    await this.page.locator('a[aria-label="See more, Brands"]').click();
-    await this.page.getByRole('link', { name: `Apply the filter ${filterName} to narrow results` }).click();
+    const seeMoreButton = this.page.locator('a[aria-label="See more, Brands"]');
+    await clickWithRetry(seeMoreButton);
+    
+    const filterLink = this.page.getByRole('link', { name: `Apply the filter ${filterName} to narrow results` });
+    await clickWithRetry(filterLink);
   }
 
   async sortByPriceDesc() {
-    await this.page.locator('#s-result-sort-select').selectOption({ value: 'price-desc-rank' });
+    const sortSelect = this.page.locator('#s-result-sort-select');
+    await waitForElementWithRetry(sortSelect);
+    await sortSelect.selectOption({ value: 'price-desc-rank' });
   }
 
   async selectFirstProduct() {
-    await this.page.locator('div[data-cy="title-recipe"]').first().click();
-    await this.page.waitForTimeout(2000);
+    // Wait for the first product to be visible and clickable
+    const firstProduct = this.page.locator('div[data-cy="title-recipe"]').first();
+    await clickWithRetry(firstProduct);
+    
+    // Wait for navigation to complete
+    await waitForPageStability(this.page);
   }
 } 
