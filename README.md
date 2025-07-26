@@ -2,6 +2,17 @@
 
 ## Overview
 This project contains Playwright end-to-end tests for product search and cart functionality. The tests are data-driven, running for each filter value (e.g., Noise, boAt, Pebble) to ensure robust coverage of product filtering and cart operations.
+## Execution Flow
+<img width="989" height="330" alt="Screenshot 2025-07-26 at 11 02 51 PM" src="https://github.com/user-attachments/assets/54aa05cc-9013-4843-9aa8-534dab2d0848" />
+
+## Local Test RUN (Traces)
+<img width="1508" height="829" alt="Screenshot 2025-07-26 at 3 21 01 AM" src="https://github.com/user-attachments/assets/536ae1ee-88e5-4061-b311-7c0b74632f9e" />
+
+## Test Reports View
+<img width="1056" height="731" alt="Screenshot 2025-07-26 at 2 51 27 PM" src="https://github.com/user-attachments/assets/b0296a92-2f9b-432a-83b0-cb2d56ece8ef" />
+
+## Test Artefacts Capture Under GitHub Actions 
+<img width="1906" height="853" alt="Screenshot 2025-07-26 at 3 22 49 PM" src="https://github.com/user-attachments/assets/fd1f2774-f640-4bd4-a42a-1ebe2de42162" />
 
 ## Test Flow
 The following flowchart illustrates how the tests are executed:
