@@ -11,7 +11,6 @@ const filterValues = ['Noise', 'boAt', 'Pebble'];
 test.describe('Product Search with Filters', () => {
   for (const filterValue of filterValues) {
     test(`should search and filter products with filter: ${filterValue} @productSearch`, async ({ page }) => {
-      test.setTimeout(120000);
       test.slow();
       
       const homePage = new HomePage(page);
@@ -41,13 +40,17 @@ test.describe('Product Search with Filters', () => {
 
       // Product View Page
       const productTitle = await productViewPage.getProductTitle();
+      const productPrice = await productViewPage.getProductPrice();
       await attachScreenshot(page, test.info(), 'Product View Screen');
       await productViewPage.addToCart();
       await cartViewPage.gotoCart();
 
       // Cart View Page
       const productTitleOnCart = await cartViewPage.getProductTitleOnCart();
-      expect(productTitle).toEqual(productTitleOnCart);
+      const cartSubTotalOnCart = await cartViewPage.getSubTotalOnCart();
+      expect.soft(productTitle).toEqual(productTitleOnCart); // Making Test to Reach next Steps 
+      expect.soft(productPrice).toEqual(cartSubTotalOnCart); // Making Test to Reach next Steps
+      expect(productTitleOnCart).toContain(filterValue);
     });
   }
 });

@@ -1,5 +1,6 @@
 import { Page } from '@playwright/test';
 import { waitForElementWithRetry, clickWithRetry } from '../utils/common_actions';
+import { title } from 'process';
 
 export class ProductViewPage {
   readonly page: Page;
@@ -14,6 +15,15 @@ export class ProductViewPage {
     await waitForElementWithRetry(titleLocator);
     const title = await titleLocator.textContent();
     return title ? title.trim() : '';
+  }
+
+  async getProductPrice(){
+    // Get the whole price part
+    const wholePriceLocator = this.page.locator('#centerCol .a-price-whole');
+    await waitForElementWithRetry(wholePriceLocator);
+    const wholePrice = await wholePriceLocator.textContent();
+   
+    return wholePrice;
   }
 
   async addToCart() {

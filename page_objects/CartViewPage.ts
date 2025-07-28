@@ -27,4 +27,20 @@ export class CartViewPage {
     const title = raw.split('\n').map(line => line.trim()).find(line => line.length > 0) || '';
     return title;
   }
+
+  async getSubTotalOnCart() {
+    // Wait for the product title container to be visible with increased timeout
+    const titleContainer = this.page.locator('#sc-subtotal-amount-buybox span');
+    await waitForElementWithRetry(titleContainer);
+    
+    const raw = await titleContainer.innerText();
+    // Get the first non-empty line (the actual product title)
+    const price = raw.split('₹');
+    // EX. 48993.00 Removing Decimal
+    const fullPrice = price[1];
+    // Remove decimal places (e.g., "4,999.00" becomes "4,999")
+    const priceWithoutDecimal = fullPrice.replace(/\.\d+$/, '');
+    return priceWithoutDecimal;
+  }
+  
 } 
