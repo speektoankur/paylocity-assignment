@@ -1,4 +1,4 @@
-# Paylocity Assignment: Data-Driven Playwright Test Suite
+# Data-Driven Playwright Test Suite
 
 ## Overview
 This project contains Playwright end-to-end tests for product search and cart functionality. The tests are data-driven, running for each filter value (e.g., Noise, boAt, Pebble) to ensure robust coverage of product filtering and cart operations.
